@@ -3,11 +3,9 @@ import React, { useState } from "react";
 import "./register.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
 export const Register = () => {
   const [studentID, setStudentID] = useState("");
   const [fullname, setFullname] = useState("");
-  const [phoneNum, setPhoneNum] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -30,7 +28,7 @@ export const Register = () => {
           }
         })
         .catch((e) => {
-          alert("wrong details");
+          alert("User already exists");
           console.log(e);
         });
     } catch (e) {

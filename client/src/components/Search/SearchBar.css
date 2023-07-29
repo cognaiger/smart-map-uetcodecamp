@@ -1,5 +1,5 @@
 .searchInputs {
-    margin-top: 0px;
+  
     display: flex;
   }
   
@@ -16,6 +16,7 @@
   }
   
   .searchIcon {
+    margin-top: 8px;
     height: 40px;
     width: 30px;
     background-color: white;
@@ -31,7 +32,7 @@
   }
   
   .dataResult {
-    margin-top: 5px;
+    margin-top: 0px;
     width: 300px;
     
     background-color: white;

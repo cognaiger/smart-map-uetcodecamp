@@ -11,7 +11,19 @@ import {
     TabList,
     TabPanels,
     TabPanel,
+    Card,
+    CardHeader,
+    Heading,
+    CardBody,
+    Stack,
+    StackDivider,
+    Box,
+    Text,
+    Tag,
+    TagLeftIcon,
+    TagLabel
   } from '@chakra-ui/react';
+import { TimeIcon } from '@chakra-ui/icons';
 import { Button } from '@chakra-ui/react';
 
 const RoomModal = ({ isOpen, setIsOpen, title, descrip }) => {
@@ -41,7 +53,63 @@ const RoomModal = ({ isOpen, setIsOpen, title, descrip }) => {
                                 {descrip}
                             </TabPanel>
                             <TabPanel>
-                                <p>This is courses</p>
+                                <Card variant={'filled'}>
+                                    <CardHeader>
+                                        <Heading size='md'>Courses schedule</Heading>
+                                    </CardHeader>
+
+                                    <CardBody>
+                                        <Stack divider={<StackDivider />} spacing={4}>
+                                            <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'}>
+                                                <div>
+                                                    <Heading size={'xs'} textTransform={'uppercase'}>
+                                                        INT2101 2
+                                                    </Heading>
+                                                    <Text pt='2' fontSize='sm'>
+                                                        Ths Vu Ba Duy
+                                                    </Text>
+                                                </div>
+
+                                                <Tag size={'sm'} variant={'subtle'} colorScheme='cyan'>
+                                                    <TagLeftIcon boxSize={8} as={TimeIcon} />
+                                                    <TagLabel>13:00 - 15:00 (T3)</TagLabel>
+                                                </Tag>
+                                            </Box>
+
+                                            <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'}>
+                                                <div>
+                                                    <Heading size={'xs'} textTransform={'uppercase'}>
+                                                        INT2102 2
+                                                    </Heading>
+                                                    <Text pt='2' fontSize='sm'>
+                                                        Ths Vu Ba Duy
+                                                    </Text>
+                                                </div>
+
+                                                <Tag size={'sm'} variant={'subtle'} colorScheme='cyan'>
+                                                    <TagLeftIcon boxSize={8} as={TimeIcon} />
+                                                    <TagLabel>13:00 - 15:00 (T2)</TagLabel>
+                                                </Tag>
+                                            </Box>
+
+                                            <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'}>
+                                                <div>
+                                                    <Heading size={'xs'} textTransform={'uppercase'}>
+                                                        INT2105 2
+                                                    </Heading>
+                                                    <Text pt='2' fontSize='sm'>
+                                                        Ths Vu Ba Duy
+                                                    </Text>
+                                                </div>
+
+                                                <Tag size={'sm'} variant={'subtle'} colorScheme='cyan'>
+                                                    <TagLeftIcon boxSize={8} as={TimeIcon} />
+                                                    <TagLabel>13:00 - 15:00 (T6)</TagLabel>
+                                                </Tag>
+                                            </Box>
+                                        </Stack>
+                                    </CardBody>
+                                </Card>
                             </TabPanel>
                         </TabPanels>
                     </Tabs>

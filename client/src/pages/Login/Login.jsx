@@ -6,7 +6,6 @@ import "./Login.css";
 
 
 const Login = () => {
-  const history = useNavigate();
   const [studentID, setStudentID] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate()
