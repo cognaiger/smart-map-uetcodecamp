@@ -61,8 +61,6 @@ export const Register = () => {
           name="name"
         />
 
-        
-
         <label htmlFor="pass">Mật khẩu</label>
         <input
           value={password}
