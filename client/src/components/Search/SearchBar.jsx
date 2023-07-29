@@ -8,13 +8,15 @@ function SearchBar({ selectedPosition, setSelectedPosition,ResetCenterView }) {
   const [wordEntered, setWordEntered] = useState("");
   const NOMINATIM_URL = "https://nominatim.openstreetmap.org/search?"
 
-
+  const BuildingApi = "localhost:8000"
 
   const [listResult, setListResult] = useState([]);
-
+  
+  const [showListResult,setShowListResult] = useState(false);
+  
 
   return (
-    <div className="search" style={{ zIndex: 1200 }} onClick={(e)=>e.stopPropagation()}>
+    <div className="search" style={{ zIndex: 1200 }} onClick={(e)=>e.stopPropagation()} >
       <div className="searchInputs">
         <input
           type="text"
@@ -22,37 +24,25 @@ function SearchBar({ selectedPosition, setSelectedPosition,ResetCenterView }) {
           value={wordEntered}
           onChange={(e) => {
             setWordEntered(e.target.value)
-
-
           }
 
           }
         />
         <div className="searchIcon">
           <button onClick={() => {
-            const params = {
-              q: wordEntered,
-              format: 'json',
-              addressdetails: 1,
-              polygon_geojson: 0,
-              viewbox:"105.766914,21.000740,105.8135162,105.8135162",
-              bounded:1
+
+            const params ={
+              name : wordEntered
             }
-            const queryString = new URLSearchParams(params).toString();
-            console.log(queryString)
-            const requestOptions = {
-              method: "GET",
-             
-            }
-            axios.get(`${NOMINATIM_URL}${queryString}`)
-
-              .then(result => {
-                console.log((result.data))
-                setListResult(result.data)
-              })
-              .catch(error => console.log(error.message))
-
-
+              const queryString = new URLSearchParams(params).toString();
+              console.log(queryString)
+      
+            axios.get(`http://${BuildingApi}/search/?${queryString}`)
+            .then(result => {
+              
+              setShowListResult(true)
+              setListResult(result.data)
+            })
           }}>
 
             <Search />
@@ -62,11 +52,12 @@ function SearchBar({ selectedPosition, setSelectedPosition,ResetCenterView }) {
       </div>
       <div>
         <div className="dataResult">
-          {listResult.map(item => {
+          {showListResult &&  listResult.map(item => {
             return (
               
 
-              <a href="#" key={item?.osm_id} className="dataItem" onClick={()=>{
+              <a href="#" key={item?._id} className="dataItem" onClick={()=>{
+                setShowListResult(false)
                 setSelectedPosition(item)
             
                 

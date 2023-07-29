@@ -19,3 +19,11 @@ export const createBuilding = async (req,res) => {
     }
 
 }
+export const getAllBuildings = async (req,res) => {
+    try{
+        const allBuildings = await BuildingModel.find({});
+        res.status(200).json(allBuildings);
+    } catch(err){
+        res.status(500).json(err.message);
+    }
+}

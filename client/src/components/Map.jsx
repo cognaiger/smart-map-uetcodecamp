@@ -25,10 +25,11 @@ const Map = () => {
         navigate(`/${building.id}/1`)
     }
     const [selectedPosition,setSelectedPosition] = useState(null)
+    
     const location = [selectedPosition?.lat,selectedPosition?.lon]
     console.log(location)
     return (
-        <div style={{ width: '100%', height: '900px' }} onClick={()=> console.log("ko hee")}>
+        <div style={{ width: '100%', height: '900px' }}>
             <MapContainer
             center={mapSetting.center}
             zoom={mapSetting.zoom}
@@ -47,7 +48,7 @@ const Map = () => {
 
                 <Polyline positions={boundaryPoints} color="red" />
 
-                {markerData.map((marker) => (
+                {/* {markerData.map((marker) => (
                     <Marker key={marker.id} 
                     position={marker.location} 
                     icon={placeHolder}
@@ -56,7 +57,16 @@ const Map = () => {
                     }}
                     >
                     </Marker>
-                ))}
+                ))} */}
+                {selectedPosition && 
+                <Marker
+                    position={location}
+                    icon={placeHolder}
+                >
+
+                </Marker>
+                }
+
 
             </MapContainer>
         </div>
