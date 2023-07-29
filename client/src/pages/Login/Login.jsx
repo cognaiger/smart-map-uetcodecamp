@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
+import { Navigate } from "react-router-dom";
 
 const Login = () => {
   const history = useNavigate();
   const [studentID, setStudentID] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate()
 
   async function submit(e) {
     e.preventDefault();
@@ -19,7 +21,7 @@ const Login = () => {
         })
         .then((res) => {
           if (res.data === "success") {
-            history("/", { state: { id: studentID } });
+            navigate("/")
           } else if (res.data === "not exist") {
             alert("User has not registed");
           } else if (res.data === "the password is incorrect") {
