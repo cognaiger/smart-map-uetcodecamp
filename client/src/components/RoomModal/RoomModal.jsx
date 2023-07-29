@@ -61,8 +61,17 @@ const RoomModal = ({ isOpen, setIsOpen, title, descrip, roomId }) => {
         setIsOpen(false);
     }
 
-    const convertDate = (start, end) => {
-        const res = start + ":00 - " + end + ":00";
+    const convertDate = (start, end, day) => {
+        let res = start + ":00 - " + end + ":00";
+        let dayText;
+        if (day === 8) {
+            dayText = "Chu nhat";
+        } else {
+            dayText = "Thu " + day;
+        }
+        if (day) {
+            res += " (" + dayText + ")";
+        }
         return res;
     }
 
@@ -110,7 +119,7 @@ const RoomModal = ({ isOpen, setIsOpen, title, descrip, roomId }) => {
 
                                                     <Tag size={'sm'} variant={'subtle'} colorScheme='cyan'>
                                                         <TagLeftIcon boxSize={8} as={TimeIcon} />
-                                                        <TagLabel>{convertDate(course.beginTime, course.endTime)}</TagLabel>
+                                                        <TagLabel>{convertDate(course.beginTime, course.endTime, course.day)}</TagLabel>
                                                     </Tag>
                                                 </Box>
                                             ))}
