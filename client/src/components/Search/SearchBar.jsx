@@ -6,7 +6,6 @@ import axios from 'axios'
 function SearchBar({ selectedPosition, setSelectedPosition, ResetCenterView }) {
 
   const [wordEntered, setWordEntered] = useState("");
-  const NOMINATIM_URL = "https://nominatim.openstreetmap.org/search?"
 
   const BuildingApi = "localhost:8000"
 

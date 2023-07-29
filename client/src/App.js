@@ -16,27 +16,38 @@ import E3F5 from "./pages/FloorLayout/E3F5";
 import E3F6 from "./pages/FloorLayout/E3F6";
 import E3F7 from "./pages/FloorLayout/E3F7";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
+
+  const ProtectedRoute = ({ children }) => {
+    const user = localStorage.getItem("user");
+    if (!user) {
+      return <Navigate to={"/login"} />
+    }
+
+    return children;
+  }
+
   return (
     <div className="App">
+      
       <Routes>
         <Route path="/login" element = {<Login/>} />
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<MainPage />} />
-        <Route path="/8" element={<G2 />}>
+        <Route path="/" element={<ProtectedRoute>
+                                  <MainPage />
+                                </ProtectedRoute>} />
+        <Route path="/8" element={<ProtectedRoute> <G2 /> </ProtectedRoute>}>
           <Route path="/8/1" element={<G2F1 />} />
           <Route path="/8/2" element={<G2F2 />} />
           <Route path="/8/3" element={<G2F3 />} />
         </Route>
 
-        <Route path="/10" element={<G3 />}>
+        <Route path="/10" element={<ProtectedRoute> <G3 /> </ProtectedRoute>}>
           <Route path="/10/1" element={<G3F1 />} />
         </Route>
-
-        <Route path="/9" element={<E3 />}>
+        <Route path="/9" element={<ProtectedRoute> <E3 /> </ProtectedRoute>}>
           <Route path="/9/1" element={<E3F1 />} />
           <Route path="/9/2" element={<E3F2 />} />
           <Route path="/9/3" element={<E3F3 />} />
@@ -44,7 +55,6 @@ function App() {
           <Route path="/9/5" element={<E3F5 />} />
           <Route path="/9/6" element={<E3F6 />} />
           <Route path="/9/7" element={<E3F7 />} />
-
         </Route>
       </Routes>
     </div>
