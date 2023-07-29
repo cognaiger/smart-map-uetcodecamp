@@ -36,13 +36,12 @@ const HeaderFloorLayout = ({ name, id, floor }) => {
                 <div className="menu">
                     <Select placeholder="Select floor" variant={"filled"} value={chosenFloor} onChange={handleSelectChange}>
                         <option value={1}>Floor 1</option>
-                        <option value={2}>Floor 2</option>
-                        <option value={3}>Floor 3</option>
-                        <option value={4}>Floor 4</option>
-                        <option value={5}>Floor 5</option>
-                        <option value={6}>Floor 6</option>
-                        <option value={7}>Floor 7</option>
-
+                        {(floor >= 2) && <option value={2}>Floor 2</option>}
+                        {(floor >= 3) && <option value={3}>Floor 3</option>}
+                        {(floor >= 4) && <option value={4}>Floor 4</option>}
+                        {(floor >= 5) && <option value={5}>Floor 5</option>}
+                        {(floor >= 6) && <option value={6}>Floor 6</option>}
+                        {(floor >= 7) && <option value={7}>Floor 7</option>}
                     </Select>
                 </div>
             </div>
