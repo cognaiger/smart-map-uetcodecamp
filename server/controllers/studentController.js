@@ -1,8 +1,9 @@
 import Student from '../models/Student.js'
 export const createUser = async (req,res) => {
     try {
-   
-        const student = Student.findOne({studentId:req.body.studentID});
+        console.log(req.body.studentID)
+        const student = await Student.findOne({studentId:req.body.studentID}).lean().exec();
+        console.log(student)
         if(student) {
             res.json("User exist")
             return;
@@ -10,7 +11,7 @@ export const createUser = async (req,res) => {
         else{
 
             const newStudent =  await Student.create({
-               studentID:req.body.studentId,
+                studentID:req.body.studentID,
                fullname : req.body.fullname,
                password:req.body.password,
            });
