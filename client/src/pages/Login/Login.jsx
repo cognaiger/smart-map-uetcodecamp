@@ -2,28 +2,33 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
+import { Navigate } from "react-router-dom";
+
 
 const Login = () => {
   const history = useNavigate();
   const [studentID, setStudentID] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate()
+
 
   async function submit(e) {
     e.preventDefault();
 
     try {
       await axios
-        .post("http://localhost:8000/", {
+
+        .post("http://localhost:8000/login", {
           studentID,
           password,
         })
         .then((res) => {
-          if ((res.data === "success")) {
-            history("/", { state: { id: studentID } });
+          if (res.data === "success") {
+            navigate("/")
           } else if (res.data === "not exist") {
             alert("User has not registed");
           } else if (res.data === "the password is incorrect") {
-            alert("the password is incorrect")
+            alert("the password is incorrect");
           }
         })
         .catch((e) => {
