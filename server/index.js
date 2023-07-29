@@ -1,0 +1,24 @@
+import express from 'express'
+import cors from 'cors'
+import helmet from 'helmet'
+import Connection from './database/db.js';
+import BuidingRouter from './routes/building.js'
+import StudentRouter from './routes/student.js'
+
+const app = express();
+
+const PORT = 8000;
+app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+
+await Connection();
+
+
+app.use('/',BuidingRouter);
+app.use('/',StudentRouter)
+
+
+app.listen(PORT, () => console.log(`Your server is running successfully on port ${PORT}`))
