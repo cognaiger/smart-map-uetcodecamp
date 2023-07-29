@@ -2,28 +2,31 @@
 import React, { useState } from "react";
 import "./register.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 export const Register = () => {
   const [studentID, setStudentID] = useState("");
   const [fullname, setFullname] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  async function submit(e)  {
+  async function submit(e) {
     e.preventDefault();
 
     // Send Student data to the server for registration
     try {
-      await axios
+      axios
         .post("http://localhost:8000/register", {
           studentID,
           fullname,
           password,
         })
         .then((res) => {
-          if (res.data === "exist") {
+          if (res.data == "exist") {
             alert("User already exist");
-          } else if (res.data === "notexist") {
-            history("/home", { state: { id: studentID } });
+          } else if (res.data == "notexist") {
+            navigate("/login");
           }
         })
         .catch((e) => {
@@ -33,7 +36,7 @@ export const Register = () => {
     } catch (e) {
       console.log(e);
     }
-  };
+  }
 
   return (
     <div className="register-container">
@@ -71,7 +74,7 @@ export const Register = () => {
         <input type="submit" onClick={submit} />
       </form>
 
-      <Link to="/Login">Đã có tài khoản? Đăng nhập</Link>
+      <Link to="/">Đã có tài khoản?</Link>
     </div>
   );
 };
