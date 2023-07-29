@@ -24,17 +24,17 @@ export const createUser = async (req, res) => {
 };
 
 export const userLogin = async (req, res) => {
-  const password  = req.body.password;
+  const password = req.body.password;
   const student = await Student.findOne({ studentID: req.body.studentID })
     .lean()
     .exec();
-    console.log( ' pass ' + password + " " + student.password)
-    console.log(student)
+  console.log(" pass " + password + " " + student.password);
+  console.log(student);
 
   if (student) {
     if (student.password === password) {
-        // console.log( ' pass ' + password + " " + student.password)
-        res.json("success");
+      // console.log( ' pass ' + password + " " + student.password)
+      res.json("success");
     } else {
       res.json("the password is incorrect");
     }

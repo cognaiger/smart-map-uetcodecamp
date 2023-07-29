@@ -4,17 +4,20 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import { Navigate } from "react-router-dom";
 
+
 const Login = () => {
   const history = useNavigate();
   const [studentID, setStudentID] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate()
 
+
   async function submit(e) {
     e.preventDefault();
 
     try {
       await axios
+
         .post("http://localhost:8000/login", {
           studentID,
           password,
@@ -31,7 +34,7 @@ const Login = () => {
         .catch((e) => {
           alert("wrong details");
           console.log(e);
-        });
+        })
     } catch (e) {
       console.log(e);
     }

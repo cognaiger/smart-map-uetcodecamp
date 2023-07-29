@@ -9,9 +9,9 @@ export const Register = () => {
   const [fullname, setFullname] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  async function submit(e)  {
+  async function submit(e) {
     e.preventDefault();
 
     // Send Student data to the server for registration
@@ -26,7 +26,7 @@ export const Register = () => {
           if (res.data == "exist") {
             alert("User already exist");
           } else if (res.data == "notexist") {
-            navigate("/login")
+            navigate("/login");
           }
         })
         .catch((e) => {
@@ -36,7 +36,7 @@ export const Register = () => {
     } catch (e) {
       console.log(e);
     }
-  };
+  }
 
   return (
     <div className="register-container">
