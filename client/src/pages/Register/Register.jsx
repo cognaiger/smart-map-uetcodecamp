@@ -28,7 +28,7 @@ export const Register = () => {
           }
         })
         .catch((e) => {
-          alert("wrong details");
+          alert("User already exists");
           console.log(e);
         });
     } catch (e) {

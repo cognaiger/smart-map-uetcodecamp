@@ -1,4 +1,5 @@
-import marker from "./img/placeholder.png"; 
+import marker from "./img/placeholder.png";
+import buildingIcon from "./img/building.png";
 import L from "leaflet";
 
 export const mapSetting = {
@@ -11,6 +12,12 @@ export const placeHolder = L.icon({
     iconSize: [30, 30],
     iconAnchor: [15, 30],
     popupAnchor: [0, -20]
+})
+
+export const building = L.icon({
+    iconUrl: buildingIcon,
+    iconSize: [25, 25],
+    iconAnchor: [12, 12],
 })
 
 export const boundaryPoints = [
