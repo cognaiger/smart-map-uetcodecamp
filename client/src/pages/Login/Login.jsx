@@ -1,44 +1,45 @@
-/* eslint-disable no-restricted-globals */
 import React, { useState } from "react";
-import "./register.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-export const Register = () => {
+import "./Login.css";
+
+const Login = () => {
   const [studentID, setStudentID] = useState("");
-  const [fullname, setFullname] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+
 
   async function submit(e) {
     e.preventDefault();
 
-    // Send Student data to the server for registration
     try {
-      axios
-        .post("http://localhost:8000/register", {
+      await axios
+
+        .post("http://localhost:8000/login", {
           studentID,
-          fullname,
           password,
         })
         .then((res) => {
-          if (res.data === "exist") {
-            alert("User already exist");
-          } else if (res.data === "notexist") {
-            navigate("/login");
+          if (res.data === "success") {
+            navigate("/")
+          } else if (res.data === "not exist") {
+            alert("User has not registed");
+          } else if (res.data === "the password is incorrect") {
+            alert("the password is incorrect");
           }
         })
         .catch((e) => {
-          alert("User already exists");
+          alert("wrong details");
           console.log(e);
-        });
+        })
     } catch (e) {
       console.log(e);
     }
   }
 
   return (
-    <div className="register-container">
-      <form className="register-form" action="POST">
+    <div className="login-container">
+      <form className="login-form" action="POST">
         <label htmlFor="id">Mã sinh viên</label>
         <input
           value={studentID}
@@ -47,16 +48,6 @@ export const Register = () => {
           placeholder="Mã sinh viên"
           id="id"
           name="id"
-        />
-
-        <label htmlFor="name">Họ và tên</label>
-        <input
-          value={fullname}
-          onChange={(e) => setFullname(e.target.value)}
-          type="text"
-          placeholder="Họ tên"
-          id="name"
-          name="name"
         />
 
         <label htmlFor="pass">Mật khẩu</label>
@@ -72,7 +63,9 @@ export const Register = () => {
         <input type="submit" onClick={submit} />
       </form>
 
-      <Link to="/">Đã có tài khoản?</Link>
+      <Link to="/Register">Chưa có tài khoản? Đăng ký</Link>
     </div>
   );
 };
+
+export default Login;
