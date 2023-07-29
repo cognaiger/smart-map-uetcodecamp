@@ -12,26 +12,25 @@ export const AuthContextProvider = ({ children }) => {
 
     const navigate = useNavigate();
 
-    const login = async(id, name) => {
+    const login = async(id, pass) => {
 
         try {
             const response = await axios.post("http://localhost:8000/login", {
-                id,
-                name
+                studentID: id,
+                password: pass
             })
           
-            if (response.status === 200) {
+            if (response.data === "not exist") {
+                alert("User has not registed")
+            } else if (response.data === "the password is incorrect") {
+                alert("Password is incorrect");
+            } else {
                 setCurrentUser({
-                    id: id,
-                    name: name
+                    id: response.data.id,
+                    name: response.data.name
                 });
 
                 navigate("/");
-                
-            } else if (response.data === "not exist") {
-                alert("User has not registed");
-            } else if (response.data === "the password is incorrect") {
-                alert("the password is incorrect");
             } 
         } catch (e) {
             console.log(e);
