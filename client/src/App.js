@@ -3,7 +3,7 @@ import G3 from "./pages/FloorLayout/G3";
 import E3 from "./pages/FloorLayout/E3";
 import MainPage from "./pages/MainPage/MainPage";
 import { Register } from "./pages/Register/Register";
-import Login from "./pages/FloorLayout/Login/Login";
+import Login from "./pages/Login/Login";
 import G2F1 from "./pages/FloorLayout/G2F1";
 import G2F2 from "./pages/FloorLayout/G2F2";
 import G2F3 from "./pages/FloorLayout/G2F3";
@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/Login" element = {<Login/>} />
+        <Route path="/login" element = {<Login/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<MainPage />} />
         <Route path="/8" element={<G2 />}>

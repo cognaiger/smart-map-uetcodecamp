@@ -18,7 +18,7 @@ await Connection();
 
 
 app.use('/',BuidingRouter);
-app.use('/',StudentRouter)
-app.use('/',SearchRouter)
+app.use('/',StudentRouter);
+app.use('/',SearchRouter);
 
 app.listen(PORT, () => console.log(`Your server is running successfully on port ${PORT}`))
