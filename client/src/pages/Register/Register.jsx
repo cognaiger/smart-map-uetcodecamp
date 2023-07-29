@@ -23,9 +23,9 @@ export const Register = () => {
           password,
         })
         .then((res) => {
-          if (res.data == "exist") {
+          if (res.data === "exist") {
             alert("User already exist");
-          } else if (res.data == "notexist") {
+          } else if (res.data === "notexist") {
             navigate("/login");
           }
         })
