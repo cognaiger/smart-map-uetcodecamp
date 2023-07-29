@@ -6,6 +6,7 @@ import BuidingRouter from './routes/building.js'
 import StudentRouter from './routes/student.js'
 import SearchRouter from './routes/search.js'
 import RoomRouter from './routes/room.js'
+import ScheduleRouter from './routes/schedule.js'
 const app = express();
 
 const PORT = 8000;
@@ -22,5 +23,6 @@ app.use('/',BuidingRouter);
 app.use('/',StudentRouter);
 app.use('/',SearchRouter);
 app.use('/',RoomRouter); 
+app.use('/', ScheduleRouter);
 
 app.listen(PORT, () => console.log(`Your server is running successfully on port ${PORT}`))
