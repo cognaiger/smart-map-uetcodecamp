@@ -39,7 +39,7 @@ export const getRoomSchedule = async (req, res) => {
             let tmp = {
                 "name": course.courseName,
                 "teacherName": course.teacherName,
-                "date": obj.date,
+                "day": obj.day,
                 "beginTime": obj.beginTime,
                 "endTime": obj.endTime
             }

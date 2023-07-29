@@ -5,7 +5,7 @@ export const createSchedule = async (req, res) => {
         const newSchedule = await Schedule.create({
             roomId: req.body.roomId,
             courseId: req.body.courseId,
-            date: req.body.date,
+            day: req.body.day,
             beginTime: req.body.beginTime,
             endTime: req.body.endTime,
         });
