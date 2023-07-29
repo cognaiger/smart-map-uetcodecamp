@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
-import { Navigate } from "react-router-dom";
-
 
 const Login = () => {
-  const history = useNavigate();
   const [studentID, setStudentID] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate()
