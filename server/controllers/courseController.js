@@ -14,10 +14,23 @@ export const createCourse = async (req,res) => {
     }
 }
 export const getAllCourses = async (req,res) => {
-    try{
-        const allBuildings = await CourseModel.find({});
-        res.status(200).json(allBuildings);
-    } catch(err){
-        res.status(500).json(err.message);
+    const roomId = req.query.roomId;
+    if(!roomId){
+        try{
+            const allCourses = await CourseModel.find({});
+            res.status(200).json(allCourses);
+        } catch(err){
+            res.status(500).json(err.message);
+        }
     }
+    else{
+        try{
+            const courseInARoom = await CourseModel.find({roomId:roomId})
+            res.status(200).json(courseInARoom)
+        }
+        catch(err){
+            res.status(500).json(err.message)
+        }
+    }
+
 }

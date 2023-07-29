@@ -1,7 +1,6 @@
 import Student from "../models/Student.js";
 export const createUser = async (req, res) => {
   try {
-    console.log(req.body.studentID);
     const student = await Student.findOne({ studentId: req.body.studentID })
       .lean()
       .exec();

@@ -4,6 +4,7 @@ const courseSchema = new mongoose.Schema({
     courseName: { type: String, required: true },
     teacherName: { type: String, required: true },
    
+
     
 });
 const Course = mongoose.model('Course', courseSchema);
