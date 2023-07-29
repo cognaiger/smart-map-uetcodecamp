@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 const roomSchema = new mongoose.Schema({
-    floorId: { type: mongoose.Schema.Types.ObjectId, ref: 'Floor', required: true },
+    roomName : {type:String,required: true},
     roomNumber: { type: String, required: true },
-    bookedTimeSlots: [{ type: String }], // Optional field to track booked time slots
-    // Other room-related properties
+    buildingId: {type:mongoose.Schema.Types.ObjectId}
+   
   });
   const  Room = mongoose.model('Room', roomSchema);
   export default Room;
