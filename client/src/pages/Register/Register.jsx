@@ -61,15 +61,7 @@ export const Register = () => {
           name="name"
         />
 
-        <label htmlFor="phoneNum">Số điện thoại</label>
-        <input
-          value={phoneNum}
-          onChange={(e) => setPhoneNum(e.target.value)}
-          type="text"
-          placeholder="SDT"
-          id="phoneNum"
-          name="phoneNum"
-        />
+        
 
         <label htmlFor="pass">Mật khẩu</label>
         <input
