@@ -1,44 +1,20 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import "./Login.css";
-
+import { AuthContext } from "../../context/authContext";
 
 
 const Login = () => {
+
+  const { login } = useContext(AuthContext);
+
   const [studentID, setStudentID] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate()
-
 
   async function submit(e) {
     e.preventDefault();
 
-    try {
-      await axios
-        .post("http://localhost:8000/login", {
-          studentID,
-          password,
-        })
-        .then((res) => {
-          if (res.data === "success") {
-            console.log(studentID)
-            localStorage.setItem("studentID",studentID)
-            localStorage.setItem("loggedIn",true)
-            navigate("/")
-          } else if (res.data === "not exist") {
-            alert("User has not registed");
-          } else if (res.data === "the password is incorrect") {
-            alert("the password is incorrect");
-          }
-        })
-        .catch((e) => {
-          alert("wrong details");
-          console.log(e);
-        })
-    } catch (e) {
-      console.log(e);
-    }
+    login(studentID, password);
   }
 
   return (

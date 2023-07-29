@@ -28,13 +28,14 @@ export const userLogin = async (req, res) => {
   const student = await Student.findOne({ studentID: req.body.studentID })
     .lean()
     .exec();
-  console.log(" pass " + password + " " + student.password);
-  console.log(student);
 
   if (student) {
     if (student.password === password) {
       // console.log( ' pass ' + password + " " + student.password)
-      res.json("success");
+      res.json({
+        id: student.studentID,
+        name: student.fullname
+      });
     } else {
       res.json("the password is incorrect");
     }
