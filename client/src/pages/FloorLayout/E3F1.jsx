@@ -11,13 +11,72 @@ const E3F1 = () => {
     const [descrip, setDescrip] = useState("");
 
     const roomInfo = {
+        "TQ": {
+            "title": "Thủ Quỹ",
+            "description": "this is description"
+        },
+
+        "KHTC": {
+            "title": "Kế Hoạch Tài Chính",
+            "description": "this is description"
+        },
+
+        "PH": {
+            "title": "Phòng Họp",
+            "description": "this is description"
+        },
+
+        "103": {
+            "title": "106- Trung Tâm Bảo Đảm Chất Lượng",
+            "description": "this is description"
+        },
+
+        "104": {
+            "title": "104- Phòng Công Tác Sinh Viên",
+            "description": "this is description"
+        },
+
+        "105": {
+            "title": "105- Phòng Đào Tạo",
+            "description": "this is description"
+        },
+
+        "106": {
+            "title": "106- Phòng Đào Tạo",
+            "description": "this is description"
+        },
+
+        "107": {
+            "title": "107- Phòng Đào Tạo",
+            "description": "this is description"
+        },
+
+        "108": {
+            "title": "108- Phòng Hành Chính Quản Trị",
+            "description": "this is description"
+        },
+
+        "E38": {
+            "title": "E38- Khoa Cơ Học Kĩ Thuận Và Tự Động Hoá",
+            "description": "this is description"
+        },
+
+        "109": {
+            "title": "109 - Phòng Giáo Sư",
+            "description": "this is description"
+        },
+
+        "110": {
+            "title": "110- Trưởng Phòng Hành Chính Quản Trị",
+            "description": "this is description"
+        },
 
     }
 
     const handleClick = (room) => {
         setIsModalOpen(true);
         setRoomTitle(roomInfo[room].title);
-        setDescrip(roomInfo[room].description);
+        setDescrip(roomInfo[room].description); 
     }
 
     return (

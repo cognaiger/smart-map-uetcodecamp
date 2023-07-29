@@ -3,11 +3,9 @@ import React, { useState } from "react";
 import "./register.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
 export const Register = () => {
   const [studentID, setStudentID] = useState("");
   const [fullname, setFullname] = useState("");
-  const [phoneNum, setPhoneNum] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -23,9 +21,9 @@ export const Register = () => {
           password,
         })
         .then((res) => {
-          if (res.data == "exist") {
+          if (res.data === "exist") {
             alert("User already exist");
-          } else if (res.data == "notexist") {
+          } else if (res.data === "notexist") {
             navigate("/login");
           }
         })
