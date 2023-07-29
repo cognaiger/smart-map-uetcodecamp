@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MapContainer, Marker, Polyline, TileLayer, useMap, useMapEvent } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { mapSetting, placeHolder, boundaryPoints, markerData } from "../data";
+import { mapSetting, placeHolder, boundaryPoints, markerData, eatingData, eat, buildingData, dormData, house, sportData, sport, parkingData, parking, building } from "../data";
 import { useNavigate } from "react-router-dom";
 import SearchBar from './Search/SearchBar'
 import { useEffect } from "react";
@@ -47,10 +47,54 @@ const Map = () => {
 
                 <Polyline positions={boundaryPoints} color="red" />
 
-                {markerData.map((marker) => (
+                {buildingData.map((marker) => (
                     <Marker key={marker.id} 
                     position={marker.location} 
-                    icon={placeHolder}
+                    icon={building}
+                    eventHandlers={{
+                        click: (e) => handleMarkerClick(marker)
+                    }}
+                    >
+                    </Marker>
+                ))}
+
+                {eatingData.map((marker) => (
+                    <Marker key={marker.id} 
+                    position={marker.location} 
+                    icon={eat}
+                    eventHandlers={{
+                        click: (e) => handleMarkerClick(marker)
+                    }}
+                    >
+                    </Marker>
+                ))}
+
+                {dormData.map((marker) => (
+                    <Marker key={marker.id} 
+                    position={marker.location} 
+                    icon={house}
+                    eventHandlers={{
+                        click: (e) => handleMarkerClick(marker)
+                    }}
+                    >
+                    </Marker>
+                ))}
+
+                {sportData.map((marker) => (
+                    <Marker key={marker.id} 
+                    position={marker.location} 
+                    icon={sport}
+                    eventHandlers={{
+                        click: (e) => handleMarkerClick(marker)
+                    }}
+                    >
+                    </Marker>
+                ))}
+
+                {parkingData.map((marker) => (
+                    <Marker key={marker.id} 
+                    position={marker.location} 
+                    icon={parking}
                     eventHandlers={{
                         click: (e) => handleMarkerClick(marker)
                     }}
