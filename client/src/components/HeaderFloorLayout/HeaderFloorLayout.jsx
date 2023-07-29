@@ -38,6 +38,11 @@ const HeaderFloorLayout = ({ name, id, floor }) => {
                         <option value={1}>Floor 1</option>
                         <option value={2}>Floor 2</option>
                         <option value={3}>Floor 3</option>
+                        <option value={4}>Floor 4</option>
+                        <option value={5}>Floor 5</option>
+                        <option value={6}>Floor 6</option>
+                        <option value={7}>Floor 7</option>
+
                     </Select>
                 </div>
             </div>
