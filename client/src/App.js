@@ -4,6 +4,7 @@ import { Register } from "./pages/Register/Register";
 import G2F1 from "./pages/FloorLayout/G2F1";
 import G2F2 from "./pages/FloorLayout/G2F2";
 import G2F3 from "./pages/FloorLayout/G2F3";
+import Login from "./pages/Login/Login";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<MainPage />} />
         <Route path="/8" element={<G2 />}>
           <Route path="/8/1" element={<G2F1 />} />
