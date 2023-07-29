@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
+
+
 const Login = () => {
   const [studentID, setStudentID] = useState("");
   const [password, setPassword] = useState("");
@@ -14,13 +16,15 @@ const Login = () => {
 
     try {
       await axios
-
         .post("http://localhost:8000/login", {
           studentID,
           password,
         })
         .then((res) => {
           if (res.data === "success") {
+            console.log(studentID)
+            localStorage.setItem("studentID",studentID)
+            localStorage.setItem("loggedIn",true)
             navigate("/")
           } else if (res.data === "not exist") {
             alert("User has not registed");
