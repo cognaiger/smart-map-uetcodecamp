@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import "./SearchBar.css";
 import { Search } from "@mui/icons-material";
-import { Close, LocationOnOutlined } from "@mui/icons-material";
+import { LocationOnOutlined } from "@mui/icons-material";
 import axios from 'axios'
 function SearchBar({ selectedPosition, setSelectedPosition,ResetCenterView }) {
 
   const [wordEntered, setWordEntered] = useState("");
-  const NOMINATIM_URL = "https://nominatim.openstreetmap.org/search?"
 
   const BuildingApi = "localhost:8000"
 

@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { MapContainer, Marker, Polyline, TileLayer, useMap, useMapEvent } from "react-leaflet";
+import { MapContainer, Marker, Polyline, TileLayer, useMapEvent } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { mapSetting, placeHolder, boundaryPoints, markerData, eatingData, eat, buildingData, dormData, house, sportData, sport, parkingData, parking, building } from "../data";
+import { mapSetting, placeHolder, boundaryPoints, eatingData, eat, buildingData, dormData, sportData, sport, parkingData, parking, building, house } from "../data";
 import { useNavigate } from "react-router-dom";
 import SearchBar from './Search/SearchBar'
-import { useEffect } from "react";
 
 import ResetCenterView from "./ResetCenterView";
 const MapComponent = () => {
@@ -69,12 +68,45 @@ const Map = () => {
                     >
                     </Marker>
                 ))}
+
+                {eatingData.map((marker) => (
+                    <Marker key={marker.id}
+                        position={marker.location}
+                        icon={eat}
+                        eventHandlers={{
+                            click: (e) => handleMarkerClick(marker)
+                        }}
+                    >
+                    </Marker>
+                ))}
+
+                {sportData.map((marker) => (
+                    <Marker key={marker.id}
+                        position={marker.location}
+                        icon={sport}
+                        eventHandlers={{
+                            click: (e) => handleMarkerClick(marker)
+                        }}
+                    >
+                    </Marker>
+                ))}
+
+                {dormData.map((marker) => (
+                    <Marker key={marker.id}
+                        position={marker.location}
+                        icon={house}
+                        eventHandlers={{
+                            click: (e) => handleMarkerClick(marker)
+                        }}
+                    >
+                    </Marker>
+                ))}
+
                 {selectedPosition &&
                     <Marker
                         position={location}
                         icon={placeHolder}
                     >
-
                     </Marker>
                 }
 
