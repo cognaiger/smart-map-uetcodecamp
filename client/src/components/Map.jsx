@@ -21,7 +21,7 @@ import {
   parking,
   building,
   house,
-
+  tickerX,
 } from "../data";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "./Search/SearchBar";
@@ -40,13 +40,6 @@ const MapComponent = () => {
 };
 
 const Map = () => {
-<<<<<<< HEAD
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const navigate = useNavigate();
-
-  const [showLayer, setShowLayer] = useState(false);
-  const [selectedBuilding, setSelectedBuilding] = useState(null);
-=======
   const navigate = useNavigate();
   const [parkTick, setParkTick] = useState(false);
   const [dormTick, setDormTick] = useState(false);
@@ -93,23 +86,10 @@ const Map = () => {
       window.removeEventListener("eatary", tickEat);
     };
   }, []);
->>>>>>> 739ff2e3af8c3d0fa7277c526538fb6eb3043631
 
   const handleMarkerClick = (building) => {
     navigate(`/${building.id}/1`);
   };
-<<<<<<< HEAD
-  const closeModal = () => {
-    // Close the modal
-    setShowLayer(false);
-  };
-  const handleParkingClick = (building) => {
-    setShowLayer(true);
-    setSelectedBuilding(building);
-  };
-
-=======
->>>>>>> 739ff2e3af8c3d0fa7277c526538fb6eb3043631
   const [selectedPosition, setSelectedPosition] = useState(null);
 
   const location = [selectedPosition?.lat, selectedPosition?.lon];
@@ -143,83 +123,6 @@ const Map = () => {
 
         <Polyline positions={boundaryPoints} color="red" />
 
-<<<<<<< HEAD
-        {buildingData.map((marker) => (
-          <Marker
-            key={marker.id}
-            position={marker.location}
-            icon={building}
-            eventHandlers={{
-              click: (e) => handleMarkerClick(marker),
-            }}
-          ></Marker>
-        ))}
-
-        {parkingData.map((marker) => (
-          <Marker
-            key={marker.id}
-            position={marker.location}
-            icon={parking}
-            onClose={() => setShowLayer(false)}
-            eventHandlers={{
-              click: (e) => handleParkingClick(marker),
-            }}
-          ></Marker>
-        ))}
-
-        {showLayer && (
-          <Popup
-            position={selectedBuilding.location}
-            onClose={() => setShowLayer(false)}
-            className="custom-popup"
-          >
-            {/* Layer content */}
-            <div className="parking">
-              <h3>{selectedBuilding.name}</h3>
-              <h3>Slot: {selectedBuilding.slot}</h3>
-              <h3>
-                Time: {selectedBuilding.openTime}h -{" "}
-                {selectedBuilding.closeTime}h
-              </h3>
-
-              {/* Add more information or components for the layer */}
-            </div>
-          </Popup>
-        )}
-
-        {eatingData.map((marker) => (
-          <Marker
-            key={marker.id}
-            position={marker.location}
-            icon={eat}
-            eventHandlers={{
-              click: (e) => handleMarkerClick(marker),
-            }}
-          ></Marker>
-        ))}
-
-        {sportData.map((marker) => (
-          <Marker
-            key={marker.id}
-            position={marker.location}
-            icon={sport}
-            eventHandlers={{
-              click: (e) => handleMarkerClick(marker),
-            }}
-          ></Marker>
-        ))}
-
-        {dormData.map((marker) => (
-          <Marker
-            key={marker.id}
-            position={marker.location}
-            icon={house}
-            eventHandlers={{
-              click: (e) => handleMarkerClick(marker),
-            }}
-          ></Marker>
-        ))}
-=======
         {buildingData.map((marker) => {
           if (buildingTick) {
             return (
@@ -299,7 +202,6 @@ const Map = () => {
           }
           
           })}
->>>>>>> 739ff2e3af8c3d0fa7277c526538fb6eb3043631
 
         {selectedPosition && (
           <Marker position={location} icon={placeHolder}></Marker>
