@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Hello from "./Hello";
 import SignOut from "./SignOut";
 import {
@@ -13,14 +13,21 @@ import {
   ModalCloseButton,
   useDisclosure,
 } from "@chakra-ui/react";
+import { TimeIcon } from "@chakra-ui/icons"
 
 import { AiOutlineHome } from "react-icons/ai";
 import MenuIcon from "./MenuIcon";
 import { BsBell } from "react-icons/bs";
 
 import { Link } from "react-router-dom";
+import ModalPickDate from "./ModalPickDate";
 const HeaderBar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [ isPickDate, setIsPickDate ] = useState(false);
+
+  const handlePickDate = () => {
+    setIsPickDate(prev => !prev);
+  }
 
   return (
     <Flex
@@ -49,6 +56,21 @@ const HeaderBar = () => {
           />
         </Link>
 
+        <Flex>
+          <IconButton
+            margin={"0 8px"}
+            height={"30px"}
+            width={"30px"}
+            icon={<TimeIcon />}
+            fontSize="17px"
+            onClick={() => handlePickDate()}
+          >
+          </IconButton>
+          {isPickDate && <ModalPickDate isOpen={isPickDate} setIsOpen={setIsPickDate} />}
+        </Flex>
+
+
+
         <Hello />
       </Flex>
 
@@ -71,7 +93,6 @@ const HeaderBar = () => {
             <ModalBody>You have a new notification!</ModalBody>
           </ModalContent>
         </Modal>
-
         <SignOut />
       </Flex>
     </Flex>
