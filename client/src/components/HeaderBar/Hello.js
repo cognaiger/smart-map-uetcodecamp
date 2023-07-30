@@ -9,7 +9,7 @@ const Hello = () => {
 
     return (
       <Text fontSize="m" fontWeight="regular" mr={4}>
-        Hello {studentID ? studentID : 'Guest'}
+        Xin Chào
       </Text>
     );
   }

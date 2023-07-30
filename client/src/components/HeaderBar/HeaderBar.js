@@ -26,6 +26,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 const HeaderBar = () => {
 const { isOpen, onOpen, onClose } = useDisclosure();
+
 const [events, setEvents] = useState([]);
   useEffect(() => {
     async function fetchData() {
