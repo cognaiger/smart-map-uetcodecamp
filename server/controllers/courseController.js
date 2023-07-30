@@ -25,6 +25,7 @@ export const getRoomAndBuildingbyCourseId = async (req, res) => {
                 "buildingName": building[i].name,
                 "lat": building[i].lat, 
                 "lon": building[i].lon,
+                "id": building[i].id,
             }
             result.push(tmp);
         }
