@@ -1,119 +1,161 @@
-import React, { useState } from "react";
-import { MapContainer, Marker, Polyline, TileLayer, useMapEvent } from "react-leaflet";
+import React, { useState, useEffect } from "react";
+import {
+  MapContainer,
+  Marker,
+  Polyline,
+  TileLayer,
+  useMapEvent,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { mapSetting, placeHolder, boundaryPoints, eatingData, eat, buildingData, dormData, sportData, sport, parkingData, parking, building, house } from "../data";
+import {
+  mapSetting,
+  placeHolder,
+  boundaryPoints,
+  eatingData,
+  eat,
+  buildingData,
+  dormData,
+  sportData,
+  sport,
+  parkingData,
+  parking,
+  building,
+  house,
+  dormDataTick,
+  tickerX,
+} from "../data";
 import { useNavigate } from "react-router-dom";
-import SearchBar from './Search/SearchBar'
+import SearchBar from "./Search/SearchBar";
 
 import ResetCenterView from "./ResetCenterView";
 const MapComponent = () => {
-    useMapEvent('click', (e) => {
-        const { lat, lng } = e.latlng;
-        console.log(`${lat}, ${lng}`);
-    })
-    return null;
-}
+  useMapEvent("click", (e) => {
+    const { lat, lng } = e.latlng;
+    console.log(`${lat}, ${lng}`);
+  });
+  return null;
+};
 
 const Map = () => {
+  const navigate = useNavigate();
 
+  const [dormitoryChecked, setDormitoryChecked] = useState(
+    localStorage.getItem("dormitory") === "true"
+  );
 
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setDormitoryChecked(localStorage.getItem("dormitory") === "true");
+    };
 
-    const navigate = useNavigate();
+    // Add an event listener to listen for changes in localStorage
+    window.addEventListener("storage", handleStorageChange);
 
-    const handleMarkerClick = (building) => {
-        navigate(`/${building.id}/1`)
-    }
-    const [selectedPosition, setSelectedPosition] = useState(null)
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
-    const location = [selectedPosition?.lat, selectedPosition?.lon]
-    console.log(location)
-    return (
-        <div style={{ width: '100%', height: '900px' }}>
-            <MapContainer
-                center={mapSetting.center}
-                zoom={mapSetting.zoom}
-                style={{ width: '100%', height: '100%', display: "flex", flexDirection: "column", alignItems: "center" }}
-            >
-                <ResetCenterView selectedPosition={selectedPosition} />
-                <SearchBar selectedPosition={selectedPosition} setSelectedPosition={setSelectedPosition} />
+  const handleMarkerClick = (building) => {
+    navigate(`/${building.id}/1`);
+  };
+  const [selectedPosition, setSelectedPosition] = useState(null);
 
-                <TileLayer
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    maxZoom={18}
-                    minZoom={16.5}
-                />
+  const location = [selectedPosition?.lat, selectedPosition?.lon];
+  console.log(location);
+  return (
+    <div style={{ width: "100%", height: "900px" }}>
+      <MapContainer
+        center={mapSetting.center}
+        zoom={mapSetting.zoom}
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <ResetCenterView selectedPosition={selectedPosition} />
+        <SearchBar
+          selectedPosition={selectedPosition}
+          setSelectedPosition={setSelectedPosition}
+        />
 
-                <MapComponent />
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          maxZoom={18}
+          minZoom={16.5}
+        />
 
-                <Polyline positions={boundaryPoints} color="red" />
+        <MapComponent />
 
-                {buildingData.map((marker) => (
-                    <Marker key={marker.id}
-                        position={marker.location}
-                        icon={building}
-                        eventHandlers={{
-                            click: (e) => handleMarkerClick(marker)
-                        }}
-                    >
-                    </Marker>
-                ))}
+        <Polyline positions={boundaryPoints} color="red" />
 
-                {parkingData.map((marker) => (
-                    <Marker key={marker.id}
-                        position={marker.location}
-                        icon={parking}
-                        eventHandlers={{
-                            click: (e) => handleMarkerClick(marker)
-                        }}
-                    >
-                    </Marker>
-                ))}
+        {buildingData.map((marker) => (
+          <Marker
+            key={marker.id}
+            position={marker.location}
+            icon={building}
+            eventHandlers={{
+              click: (e) => handleMarkerClick(marker),
+            }}
+          ></Marker>
+        ))}
 
-                {eatingData.map((marker) => (
-                    <Marker key={marker.id}
-                        position={marker.location}
-                        icon={eat}
-                        eventHandlers={{
-                            click: (e) => handleMarkerClick(marker)
-                        }}
-                    >
-                    </Marker>
-                ))}
+        {parkingData.map((marker) => (
+          <Marker
+            key={marker.id}
+            position={marker.location}
+            icon={parking}
+            eventHandlers={{
+              click: (e) => handleMarkerClick(marker),
+            }}
+          ></Marker>
+        ))}
 
-                {sportData.map((marker) => (
-                    <Marker key={marker.id}
-                        position={marker.location}
-                        icon={sport}
-                        eventHandlers={{
-                            click: (e) => handleMarkerClick(marker)
-                        }}
-                    >
-                    </Marker>
-                ))}
+        {eatingData.map((marker) => (
+          <Marker
+            key={marker.id}
+            position={marker.location}
+            icon={eat}
+            eventHandlers={{
+              click: (e) => handleMarkerClick(marker),
+            }}
+          ></Marker>
+        ))}
 
-                {dormData.map((marker) => (
-                    <Marker key={marker.id}
-                        position={marker.location}
-                        icon={house}
-                        eventHandlers={{
-                            click: (e) => handleMarkerClick(marker)
-                        }}
-                    >
-                    </Marker>
-                ))}
+        <>
+          {sportData.map((marker) => (
+            <Marker
+              key={marker.id}
+              position={marker.location}
+              icon={sport}
+              eventHandlers={{
+                click: (e) => handleMarkerClick(marker),
+              }}
+            ></Marker>
+          ))}
+        </>
 
-                {selectedPosition &&
-                    <Marker
-                        position={location}
-                        icon={placeHolder}
-                    >
-                    </Marker>
-                }
+        {dormData.map((marker) => (
+          <Marker
+            key={marker.id}
+            position={marker.location}
+            icon={dormitoryChecked ? house : tickerX}
+            eventHandlers={{
+              click: (e) => handleMarkerClick(marker),
+            }}
+          ></Marker>
+        ))}
 
-
-            </MapContainer>
-        </div>
-    );
-}
+        {selectedPosition && (
+          <Marker position={location} icon={placeHolder}></Marker>
+        )}
+      </MapContainer>
+    </div>
+  );
+};
 
 export default Map;

@@ -29,7 +29,7 @@ export const AuthContextProvider = ({ children }) => {
                     id: response.data.id,
                     name: response.data.name
                 });
-
+                localStorage.setItem("loggedIn",true);
                 navigate("/");
             } 
         } catch (e) {
