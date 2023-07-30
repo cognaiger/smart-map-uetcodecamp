@@ -1,6 +1,6 @@
 import React from "react";
 import Hello from "./Hello";
-import SignInSignOut from "./SignInSignOut";
+import SignOut from "./SignOut";
 import {
   Flex,
   Text,
@@ -71,7 +71,7 @@ const HeaderBar = () => {
           </ModalContent>
         </Modal>
 
-        <SignInSignOut />
+        <SignOut />
       </Flex>
     </Flex>
   );
