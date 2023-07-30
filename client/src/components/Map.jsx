@@ -26,7 +26,11 @@ import {
 import { useNavigate } from "react-router-dom";
 import SearchBar from "./Search/SearchBar";
 
+import { useDisclosure } from "@chakra-ui/react";
 import ResetCenterView from "./ResetCenterView";
+import { Popup } from "react-leaflet";
+import "./Map.css";
+
 const MapComponent = () => {
   useMapEvent("click", (e) => {
     const { lat, lng } = e.latlng;
@@ -36,6 +40,18 @@ const MapComponent = () => {
 };
 
 const Map = () => {
+  const [showLayer, setShowLayer] = useState(false);
+  const [selectedBuilding, setSelectedBuilding] = useState(null);
+
+  const closeModal = () => {
+    // Close the modal
+    setShowLayer(false);
+  };
+  const handleParkingClick = (building) => {
+    setShowLayer(true);
+    setSelectedBuilding(building);
+  };
+
   const navigate = useNavigate();
   const [parkTick, setParkTick] = useState(false);
   const [dormTick, setDormTick] = useState(false);
@@ -44,27 +60,26 @@ const Map = () => {
   const [sportTick, setSportTick] = useState(false);
 
   useEffect(() => {
-
     const tickBuilding = () => {
       setBuildingTick((prev) => !prev);
       console.log("building");
-    }
+    };
 
     const tickParking = () => {
       setParkTick((prev) => !prev);
-    }
+    };
 
     const tickStadium = () => {
       setSportTick((prev) => !prev);
-    }
+    };
 
     const tickDorm = () => {
-      setDormTick((prev) => !prev)
-    }
-    
+      setDormTick((prev) => !prev);
+    };
+
     const tickEat = () => {
       setEatTick((prev) => !prev);
-    }
+    };
 
     // Add an event listener to listen for changes in localStorage
     window.addEventListener("parking", tickParking);
@@ -123,19 +138,17 @@ const Map = () => {
           if (buildingTick) {
             return (
               <Marker
-              key={marker.id}
-              position={marker.location}
-              icon={building}
-              eventHandlers={{
-                click: (e) => handleMarkerClick(marker),
-              }}
+                key={marker.id}
+                position={marker.location}
+                icon={building}
+                eventHandlers={{
+                  click: (e) => handleMarkerClick(marker),
+                }}
               ></Marker>
-            )
-            
+            );
           }
         })}
 
-        
         {parkingData.map((marker) => {
           if (parkTick) {
             return (
@@ -144,12 +157,31 @@ const Map = () => {
                 position={marker.location}
                 icon={parking}
                 eventHandlers={{
-                  click: (e) => handleMarkerClick(marker),
+                  click: (e) => handleParkingClick(marker),
                 }}
               ></Marker>
-            )
+            );
           }
-        } 
+        })}
+
+        {showLayer && (
+          <Popup
+            position={selectedBuilding.location}
+            onClose={() => setShowLayer(false)}
+            className="custom-popup"
+          >
+            {/* Layer content */}
+            <div className="parking">
+              <h3>{selectedBuilding.name}</h3>
+              <h3>Slot: {selectedBuilding.slot}</h3>
+              <h3>
+                Time: {selectedBuilding.openTime}h -{" "}
+                {selectedBuilding.closeTime}h
+              </h3>
+
+              {/* Add more information or components for the layer */}
+            </div>
+          </Popup>
         )}
 
         {eatingData.map((marker) => {
@@ -163,41 +195,39 @@ const Map = () => {
                   click: (e) => handleMarkerClick(marker),
                 }}
               ></Marker>
-            )
+            );
           }
-          
-          })}
+        })}
 
-          {sportData.map((marker) => {
-            if (sportTick) {
-              return (
-                <Marker
+        {sportData.map((marker) => {
+          if (sportTick) {
+            return (
+              <Marker
                 key={marker.id}
                 position={marker.location}
                 icon={sport}
                 eventHandlers={{
                   click: (e) => handleMarkerClick(marker),
                 }}
-                ></Marker>
-              )
-            }
-            })}
+              ></Marker>
+            );
+          }
+        })}
 
         {dormData.map((marker) => {
           if (dormTick) {
             return (
               <Marker
-              key={marker.id}
-              position={marker.location}
-              icon={house}
-              eventHandlers={{
-                click: (e) => handleMarkerClick(marker),
-              }}
+                key={marker.id}
+                position={marker.location}
+                icon={house}
+                eventHandlers={{
+                  click: (e) => handleMarkerClick(marker),
+                }}
               ></Marker>
-            )
+            );
           }
-          
-          })}
+        })}
 
         {selectedPosition && (
           <Marker position={location} icon={placeHolder}></Marker>
