@@ -17,15 +17,22 @@ import {
   TagLabel,
   Tag,
 } from "@chakra-ui/react";
+import { TimeIcon } from "@chakra-ui/icons"
 
 import { AiOutlineHome } from "react-icons/ai";
 import MenuIcon from "./MenuIcon";
 import { BsBell } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ModalPickDate from "./ModalPickDate";
 import axios from "axios";
 const HeaderBar = () => {
-const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [ isPickDate, setIsPickDate ] = useState(false);
+
+  const handlePickDate = () => {
+    setIsPickDate(prev => !prev);
+  }
 
 const [events, setEvents] = useState([]);
   useEffect(() => {
@@ -79,6 +86,21 @@ const [events, setEvents] = useState([]);
           />
         </Link>
 
+        <Flex>
+          <IconButton
+            margin={"0 8px"}
+            height={"30px"}
+            width={"30px"}
+            icon={<TimeIcon />}
+            fontSize="17px"
+            onClick={() => handlePickDate()}
+          >
+          </IconButton>
+          {isPickDate && <ModalPickDate isOpen={isPickDate} setIsOpen={setIsPickDate} />}
+        </Flex>
+
+
+
         <Hello />
       </Flex>
 
@@ -122,7 +144,6 @@ const [events, setEvents] = useState([]);
             </ModalBody>
           </ModalContent>
         </Modal>
-
         <SignOut />
       </Flex>
     </Flex>
