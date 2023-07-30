@@ -30,8 +30,6 @@ export const AuthContextProvider = ({ children }) => {
                     name: response.data.name
                 });
                 localStorage.setItem("loggedIn",true);
-                navigate("/");
-
             } 
         } catch (e) {
             console.log(e);
