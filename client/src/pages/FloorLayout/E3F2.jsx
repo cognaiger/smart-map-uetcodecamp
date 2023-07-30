@@ -14,71 +14,71 @@ const E3F2 = () => {
     const roomInfo = {
         "212": {
             "title": "Phòng Hội Thảo",
-            "description": "this is description"
+            "description": "Đây là Phòng Hội Thảo"
         },
         "201": {
             "title": "Phòng Khoa Học Công Nghệ và Hợp Tác Phát Triển",
-            "description": "this is description"
+            "description": "Phòng Khoa Học Công Nghệ và Hợp Tác Phát Triển"
         },
 
         "202": {
             "title": "Phòng Hành Chính Quản Trị",
-            "description": "this is description"
+            "description": "Phòng Hành Chính Quản Trị"
         },
 
         "203": {
             "title": "Phòng Phó Hiệu Trưởng",
-            "description": "this is description"
+            "description": "Phòng của Phó Hiệu Trưởng"
         },
         
         "204": {
             "title": "Phòng Phó Hiệu Trưởng",
-            "description": "this is description"
+            "description": "Phòng của Phó Hiệu Trưởng"
         },
 
         "205": {
             "title": "Phòng Hiệu Trưởng",
-            "description": "this is description"
+            "description": "Phòng của Hiệu Trưởng"
         },
 
         "206": {
             "title": "Phòng 206",
-            "description": "this is description"
+            "description": "Phòng 206"
         },
 
         "211": {
             "title": "Phòng Lễ Tân",
-            "description": "this is description"
+            "description": "Phòng Lễ Tân"
         },
 
         "210": {
             "title": "Văn Phòng Dự Án ĐHQGHN",
-            "description": "this is description"
+            "description": "Văn Phòng Dự Án ĐHQGHN"
         },
 
         "209": {
             "title": "Phòng Kế Toán Trưởng",
-            "description": "this is description"
+            "description": "Phòng Kế Toán Trưởng"
         },
 
         "209A": {
             "title": "Phòng Phó Hiệu Trưởng",
-            "description": "this is description"
+            "description": "Phòng Phó Hiệu Trưởng"
         },
 
         "208B": {
-            "title": "Hành Chính - Quản Trị - Trưởng Phòng ",
-            "description": "this is description"
+            "title": "Hành Chính - Quản Trị - Trưởng Phòng",
+            "description": "Hành Chính - Quản Trị - Trưởng Phòng"
         },
 
         "208A": {
             "title": "Giám Đốc Trung Tâm Đảm Bảo Chất Lượng",
-            "description": "this is description"
+            "description": "Phòng của Giám Đốc Trung Tâm Đảm Bảo Chất Lượng"
         },
 
         "208": {
             "title": "Trưởng Phòng Kế Toán Tài Chính",
-            "description": "this is description"
+            "description": "Phòng của Trưởng Phòng Kế Toán Tài Chính"
         },
         
     }
