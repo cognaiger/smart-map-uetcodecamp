@@ -14,7 +14,7 @@ const Login = () => {
   async function submit(e) {
     e.preventDefault();
 
-    login(studentID, password);
+    await login(studentID, password);
   }
 
   return (
