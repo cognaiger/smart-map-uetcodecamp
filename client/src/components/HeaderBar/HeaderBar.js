@@ -12,18 +12,15 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
-
 } from "@chakra-ui/react";
 
 import { AiOutlineHome } from "react-icons/ai";
-
+import MenuIcon from "./MenuIcon";
 import { BsBell } from "react-icons/bs";
 
 import { Link } from "react-router-dom";
 const HeaderBar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
- 
 
   return (
     <Flex
@@ -36,6 +33,8 @@ const HeaderBar = () => {
     >
       {/* Left side */}
       <Flex align="center">
+        <MenuIcon />
+
         <Text fontSize="xl" fontWeight="bold" mr={4}>
           VNU
         </Text>
