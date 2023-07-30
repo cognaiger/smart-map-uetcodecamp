@@ -4,6 +4,7 @@ import eatPlace from "./img/eat.png";
 import sportPlace from "./img/sport.png";
 import housePlace from "./img/house.png";
 import parkingPlace from "./img/parking.png";
+import ticker from './img/x.png'
 import L from "leaflet";
 
 export const mapSetting = {
@@ -48,6 +49,13 @@ export const parking = L.icon({
     iconAnchor: [10, 10]
 })
 
+
+export const tickerX = L.icon({
+    iconUrl: ticker,
+    iconSize: [20, 20],
+    iconAnchor: [10, 10]
+})
+
 export const boundaryPoints = [
     [21.036800, 105.781632],
     [21.037593, 105.780931],
@@ -58,6 +66,8 @@ export const boundaryPoints = [
     [21.036738, 105.785168],
     [21.036823, 105.781622]
 ]
+
+// Real icon
 
 export const buildingData = [
     {
@@ -206,6 +216,139 @@ export const parkingData = [
         slot: 250,
         openTime:7,
         closeTime:20,
+        location: [21.037643328987247, 105.78241288661957]
+    }
+]
+
+
+// When tick checkbox
+
+export const buildingDataTick = [
+    {
+        id: 24,
+        name: "Giang duong 2 - GD2",
+        location: [21.040811380617235, 105.78305661678314],
+    },
+    {
+        id: 25,
+        name: "Trung tam khao thi - C1T",
+        location: [21.038409375304912, 105.78333020210268],
+    },
+    {
+        id: 26,
+        name: "E5",
+        location: [21.038429402606774, 105.78274413943294],
+    },
+    {
+        id: 27,
+        name: "G2",
+        location: [21.038161537221455, 105.78335970640184]
+    },
+    {
+        id: 28,
+        name: "E3",
+        location: [21.03828921143716, 105.78261673450471]
+    },
+    {
+        id: 29,
+        name: "G3",
+        location: [21.038098951781638, 105.78204274177553]
+    }
+]
+
+export const eatingDataTick = [
+    {
+        id: 30,
+        name: "Nha an Ngoai Ngu",
+        location: [21.040649913001385, 105.78304857015611],
+    },
+    {
+        id: 31,
+        name: "Quan an ki tuc xa",
+        location: [21.040827652537818, 105.78235924243927]
+    },
+    {
+        id: 32,
+        name: "Khu an uong",
+        location: [21.038108965453773, 105.78180670738222]
+    },
+    {
+        id: 33,
+        name: "Yummy Buffet Hotpot",
+        location: [21.03736795189741, 105.78286886215211]
+    },
+    {
+        id: 34,
+        name: "S Cafe New Club",
+        location: [21.038779879953616, 105.78285276889802]
+    }
+]
+
+export const dormDataTick = [
+    {
+        id: 35,
+        name: "Ki tuc xa A Ngoai Ngu",
+        location: [21.040707490620914, 105.78222513198853],
+    },
+    {
+        id: 36,
+        name: "Ki tuc xa B Ngoai Ngu",
+        location: [21.040372038089863, 105.78220903873445],
+    },
+    {
+        id: 37,
+        name: "Ki tuc xa C Ngoai Ngu",
+        location: [21.04078259183033, 105.78152775764465],
+    },
+]
+
+export const sportDataTick = [
+    {
+        id: 38,
+        name: "San bong DHQGHN",
+        location: [21.03997383272318, 105.78220988173148],
+    },
+    {
+        id: 39,
+        name: "San bong su pham",
+        location: [21.039505866120283, 105.78476786613466]
+    }
+]
+
+export const parkingDataTick = [
+    {
+        id: 40,
+        name: "Nha xe Ngoai Ngu",
+        location: [21.039490845752677, 105.78171014785768]
+    },
+    {
+        id: 41,
+        name: "Nha xe ky tuc xa",
+        location: [21.040266896096266, 105.78242897987367]
+    },
+    {
+        id: 42,
+        name: "Nha xe GD2",
+        location: [21.040697477123466, 105.78276693820953]
+    },
+    {
+        id: 43,
+        name: "Nha xe truong Luat",
+        location: [21.037773507070707, 105.78263819217683]
+    },
+    {
+        id: 44,
+        name: "Nha xe E5",
+        location: [21.03900518638399, 105.78298687934877]
+    },
+    {
+        id: 45,
+        name: "Nha xe E1",
+        location: [21.037763493376012, 105.78266501426698]
+    },
+    {
+        id: 46,
+        name: "Nha xe B2",
         location: [21.037643328987247, 105.78241288661957]
     }
 ]
