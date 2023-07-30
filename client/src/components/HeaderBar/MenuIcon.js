@@ -6,8 +6,6 @@ import Map from "../Map";
 const MenuIcon = ({ onCheckboxChange }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
-  
-
   const handleMenuClick = () => {
     setMenuOpen((prevState) => !prevState);
   };
