@@ -23,8 +23,6 @@ import { Link } from "react-router-dom";
 const HeaderBar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
- 
-
   return (
     <Flex
       as="header"

@@ -1,0 +1,12 @@
+/* Map.css */
+
+/* Custom styles for the popup */
+.custom-popup {
+  background-color: skyblue; /* Set the background color to sky blue */
+  color: white; /* Set the text color to white */
+  padding: 10px; /* Add some padding to the popup content */
+  border-radius: 8px; /* Add rounded corners to the popup */
+
+  /* Customize font to be bold */
+  font-weight: bold;
+}

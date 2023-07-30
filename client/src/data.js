@@ -155,36 +155,57 @@ export const parkingData = [
     {
         id: 17,
         name: "Nha xe Ngoai Ngu",
+        slot: 200,
+        openTime:7,
+        closeTime:20,
         location: [21.039490845752677, 105.78171014785768]
     },
     {
         id: 18,
         name: "Nha xe ky tuc xa",
+        slot: 150,
+        openTime:7,
+        closeTime:20,
         location: [21.040266896096266, 105.78242897987367]
     },
     {
         id: 19,
         name: "Nha xe GD2",
+        slot:90,
+        openTime:7,
+        closeTime:20,
         location: [21.040697477123466, 105.78276693820953]
     },
     {
         id: 20,
         name: "Nha xe truong Luat",
+        slot: 300,
+        openTime:7,
+        closeTime:20,
         location: [21.037773507070707, 105.78263819217683]
     },
     {
         id: 21,
         name: "Nha xe E5",
+        slot: 90,
+        openTime:7,
+        closeTime:20,
         location: [21.03900518638399, 105.78298687934877]
     },
     {
         id: 22,
         name: "Nha xe E1",
+        slot: 100,
+        openTime:7,
+        closeTime:20,
         location: [21.037763493376012, 105.78266501426698]
     },
     {
         id: 23,
         name: "Nha xe B2",
+        slot: 250,
+        openTime:7,
+        closeTime:20,
         location: [21.037643328987247, 105.78241288661957]
     }
 ]
