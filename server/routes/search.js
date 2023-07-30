@@ -1,6 +1,7 @@
 import express from 'express'
-import {search} from '../controllers/searchController.js'
+import {searchBuilding,searchCourse} from '../controllers/searchController.js'
 const router = express.Router();
 
-router.get('/search/',search)
+router.get('/search/building',searchBuilding)
+router.get('/search/course',searchCourse)
 export default router;

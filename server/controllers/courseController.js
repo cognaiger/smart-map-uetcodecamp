@@ -6,16 +6,25 @@ import Course from "../models/Course.js";
 
 export const getRoomAndBuildingbyCourseId = async (req, res) => {
     try {
-        const allSchedules = await Schedule.find({courseId: req.query.courseId});
+        const course = await Course.findById(req.query.courseId)
+        const allSchedules = await Schedule.find({ courseId: req.query.courseId });
 
         let result = [];
-        const rooms = await Promise.all(allSchedules.map(async(e) => await Room.findOne({_id: e.roomId})));
-        const building = await Promise.all(rooms.map(async(e) => await Building.findOne({_id: e.buildingId})));
+        const rooms = await Promise.all(allSchedules.map(async (e) => await Room.findOne({ _id: e.roomId })));
+        const building = await Promise.all(rooms.map(async (e) => await Building.findOne({ _id: e.buildingId })));
 
         for (let i = 0; i < rooms.length; i++) {
             let tmp = {
+                "beginTime" : allSchedules[i].beginTime,
+                "endTime" : allSchedules[i].endTime,
+                "day" : allSchedules[i].date,
+                "courseCode": course.courseCode,
+                "courseName": course.courseName,
+                "teacher": course.teacherName,
                 "roomName": rooms[i].roomName,
-                "buildingName": building[i].display_name
+                "buildingName": building[i].name,
+                "lat": building[i].lat, 
+                "lon": building[i].lon,
             }
             result.push(tmp);
         }
