@@ -12,17 +12,17 @@ const G3F1 = () => {
     const roomInfo = {
         "gd1": {
             "title": "Giảng Đường 1",
-            "description": "this is description"
+            "description": "Giảng Đường 1"
         },
 
         "gd2": {
             "title": "Giảng Đường 2",
-            "description": "this is description"
+            "description": "Giảng Đường 2"
         },
 
         "gd3": {
             "title": "Giảng Đường 2",
-            "description": "this is description"
+            "description": "Giảng Đường 2"
         }
     }
 

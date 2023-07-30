@@ -13,62 +13,62 @@ const E3F1 = () => {
     const roomInfo = {
         "TQ": {
             "title": "Thủ Quỹ",
-            "description": "this is description"
+            "description": "Phòng Thủ Quỹ của trường."
         },
 
         "KHTC": {
             "title": "Kế Hoạch Tài Chính",
-            "description": "this is description"
+            "description": "Phòng Kế Hoạch Tài Chính"
         },
 
         "PH": {
             "title": "Phòng Họp",
-            "description": "this is description"
+            "description": "Phòng Họp"
         },
 
         "103": {
-            "title": "106- Trung Tâm Bảo Đảm Chất Lượng",
-            "description": "this is description"
+            "title": "103- Trung Tâm Bảo Đảm Chất Lượng",
+            "description": "Trung Tâm Bảo Đảm Chất Lượng"
         },
 
         "104": {
             "title": "104- Phòng Công Tác Sinh Viên",
-            "description": "this is description"
+            "description": "Nơi hỗ trợ, giải đáp thắc mắc của sinh viên. Mở Từ 8h - 16h"
         },
 
         "105": {
             "title": "105- Phòng Đào Tạo",
-            "description": "this is description"
+            "description": "Phòng Phụ Trách Đào Tạo. Mở từ 8h-16h"
         },
 
         "106": {
             "title": "106- Phòng Đào Tạo",
-            "description": "this is description"
+            "description": "Phòng Phụ Trách Đào Tạo. Mở từ 8h-16h"
         },
 
         "107": {
             "title": "107- Phòng Đào Tạo",
-            "description": "this is description"
+            "description": "Phòng Phụ Trách Đào Tạo. Mở từ 8h-16h"
         },
 
         "108": {
             "title": "108- Phòng Hành Chính Quản Trị",
-            "description": "this is description"
+            "description": "Phòng hành chính quản trị"
         },
 
         "E38": {
-            "title": "E38- Khoa Cơ Học Kĩ Thuận Và Tự Động Hoá",
-            "description": "this is description"
+            "title": "E38- Khoa Cơ Học Kĩ Thuật Và Tự Động Hoá",
+            "description": "Khoa Cơ Học Kĩ Thuật Và Tự Động Hoá"
         },
 
         "109": {
             "title": "109 - Phòng Giáo Sư",
-            "description": "this is description"
+            "description": "phòng của Giáo sư"
         },
 
         "110": {
             "title": "110- Trưởng Phòng Hành Chính Quản Trị",
-            "description": "this is description"
+            "description": "Phòng của Trưởng Phòng Hành Chính Quản Trị"
         },
 
     }

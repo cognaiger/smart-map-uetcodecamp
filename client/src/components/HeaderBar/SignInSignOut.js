@@ -5,10 +5,10 @@ import { AiOutlineLogout } from "react-icons/ai";
 
 import { Link } from "react-router-dom";
 const SignInSignOut = () => {
-  const loggedIn = localStorage.getItem("loggedIn");
+  
   const hanleLogOut = () => {
     localStorage.setItem("loggedIn", false);
-    localStorage.removeItem("studentID");
+    localStorage.clear();
     window.location.reload();
   };
   return (
@@ -16,7 +16,7 @@ const SignInSignOut = () => {
       colorScheme="teal"
       variant="ghost"
       leftIcon={
-        loggedIn === "true" ? (
+        localStorage.getItem("loggedIn") === "true" ? (
           <IconButton
             icon={<AiOutlineLogout />}
             aria-label="Logout"
@@ -38,7 +38,7 @@ const SignInSignOut = () => {
         )
       }
     >
-      {loggedIn === "true" ? "Sign Out" : "Sign In"}
+      {localStorage.getItem("loggedIn") === "true" ? "Sign Out" : "Sign In"}
     </Button>
   );
 };
