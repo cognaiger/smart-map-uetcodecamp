@@ -21,7 +21,6 @@ import {
   parking,
   building,
   house,
-  dormDataTick,
   tickerX,
 } from "../data";
 import { useNavigate } from "react-router-dom";
@@ -38,22 +37,49 @@ const MapComponent = () => {
 
 const Map = () => {
   const navigate = useNavigate();
-
-  const [dormitoryChecked, setDormitoryChecked] = useState(
-    localStorage.getItem("dormitory") === "true"
-  );
+  const [parkTick, setParkTick] = useState(false);
+  const [dormTick, setDormTick] = useState(false);
+  const [buildingTick, setBuildingTick] = useState(false);
+  const [eatTick, setEatTick] = useState(false);
+  const [sportTick, setSportTick] = useState(false);
 
   useEffect(() => {
-    const handleStorageChange = () => {
-      setDormitoryChecked(localStorage.getItem("dormitory") === "true");
-    };
+
+    const tickBuilding = () => {
+      setBuildingTick((prev) => !prev);
+      console.log("building");
+    }
+
+    const tickParking = () => {
+      setParkTick((prev) => !prev);
+    }
+
+    const tickStadium = () => {
+      setSportTick((prev) => !prev);
+    }
+
+    const tickDorm = () => {
+      setDormTick((prev) => !prev)
+    }
+    
+    const tickEat = () => {
+      setEatTick((prev) => !prev);
+    }
 
     // Add an event listener to listen for changes in localStorage
-    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("parking", tickParking);
+    window.addEventListener("building", tickBuilding);
+    window.addEventListener("dormitory", tickDorm);
+    window.addEventListener("stadium", tickStadium);
+    window.addEventListener("eatary", tickEat);
 
     // Clean up the event listener when the component is unmounted
     return () => {
-      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("parking", tickParking);
+      window.removeEventListener("building", tickBuilding);
+      window.removeEventListener("dormitory", tickDorm);
+      window.removeEventListener("stadium", tickStadium);
+      window.removeEventListener("eatary", tickEat);
     };
   }, []);
 
@@ -93,62 +119,85 @@ const Map = () => {
 
         <Polyline positions={boundaryPoints} color="red" />
 
-        {buildingData.map((marker) => (
-          <Marker
-            key={marker.id}
-            position={marker.location}
-            icon={building}
-            eventHandlers={{
-              click: (e) => handleMarkerClick(marker),
-            }}
-          ></Marker>
-        ))}
-
-        {parkingData.map((marker) => (
-          <Marker
-            key={marker.id}
-            position={marker.location}
-            icon={parking}
-            eventHandlers={{
-              click: (e) => handleMarkerClick(marker),
-            }}
-          ></Marker>
-        ))}
-
-        {eatingData.map((marker) => (
-          <Marker
-            key={marker.id}
-            position={marker.location}
-            icon={eat}
-            eventHandlers={{
-              click: (e) => handleMarkerClick(marker),
-            }}
-          ></Marker>
-        ))}
-
-        <>
-          {sportData.map((marker) => (
-            <Marker
+        {buildingData.map((marker) => {
+          if (buildingTick) {
+            return (
+              <Marker
               key={marker.id}
               position={marker.location}
-              icon={sport}
+              icon={building}
               eventHandlers={{
                 click: (e) => handleMarkerClick(marker),
               }}
-            ></Marker>
-          ))}
-        </>
+              ></Marker>
+            )
+            
+          }
+        })}
 
-        {dormData.map((marker) => (
-          <Marker
-            key={marker.id}
-            position={marker.location}
-            icon={dormitoryChecked ? house : tickerX}
-            eventHandlers={{
-              click: (e) => handleMarkerClick(marker),
-            }}
-          ></Marker>
-        ))}
+        
+        {parkingData.map((marker) => {
+          if (parkTick) {
+            return (
+              <Marker
+                key={marker.id}
+                position={marker.location}
+                icon={parking}
+                eventHandlers={{
+                  click: (e) => handleMarkerClick(marker),
+                }}
+              ></Marker>
+            )
+          }
+        } 
+        )}
+
+        {eatingData.map((marker) => {
+          if (eatTick) {
+            return (
+              <Marker
+                key={marker.id}
+                position={marker.location}
+                icon={eat}
+                eventHandlers={{
+                  click: (e) => handleMarkerClick(marker),
+                }}
+              ></Marker>
+            )
+          }
+          
+          })}
+
+          {sportData.map((marker) => {
+            if (sportTick) {
+              return (
+                <Marker
+                key={marker.id}
+                position={marker.location}
+                icon={sport}
+                eventHandlers={{
+                  click: (e) => handleMarkerClick(marker),
+                }}
+                ></Marker>
+              )
+            }
+            })}
+
+        {dormData.map((marker) => {
+          if (dormTick) {
+            return (
+              <Marker
+              key={marker.id}
+              position={marker.location}
+              icon={house}
+              eventHandlers={{
+                click: (e) => handleMarkerClick(marker),
+              }}
+              ></Marker>
+            )
+          }
+          
+          })}
 
         {selectedPosition && (
           <Marker position={location} icon={placeHolder}></Marker>

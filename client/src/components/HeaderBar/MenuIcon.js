@@ -1,7 +1,6 @@
 import React, { useState,useEffect } from "react";
 import { Flex, IconButton, Box, Checkbox, Text } from "@chakra-ui/react";
 import { FiMenu } from "react-icons/fi";
-import Map from "../Map";
 
 const MenuIcon = ({ onCheckboxChange }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -10,38 +9,41 @@ const MenuIcon = ({ onCheckboxChange }) => {
     setMenuOpen((prevState) => !prevState);
   };
 
-  const [checkboxStates, setCheckboxStates] = useState(() => {
-    // Initialize checkbox states from localStorage, or set them to false if not found in localStorage
-    const savedCheckboxStates = [
-      localStorage.getItem('parking') === 'true',
-      localStorage.getItem('building') === 'true',
-      localStorage.getItem('dormitory') === 'true',
-      localStorage.getItem('stadium') === 'true',
-      localStorage.getItem('eatary') === 'true',
-    ];
+  const [parkingChecked, setParkingChecked] = useState(false);
+  const [buildingChecked, setBuildingChecked] = useState(false);
+  const [dormChecked, setDormChecked] = useState(false);
+  const [stadiumChecked, setStadiumChecked] = useState(false);
+  const [eatChecked, setEatChecked] = useState(false);
 
-    return savedCheckboxStates.every((state) => state !== null) ? savedCheckboxStates : [false, false, false, false];
-  });
+  const tickParking = () => {
+    setParkingChecked((prev) => !prev);
+    localStorage.setItem('parking', parkingChecked);
+    window.dispatchEvent(new Event('parking'));
+  }
 
-  useEffect(() => {
-    // Save checkbox states to localStorage whenever they change
-    localStorage.setItem('parking', checkboxStates[0]);
-    localStorage.setItem('building', checkboxStates[1]);
-    localStorage.setItem('dormitory', checkboxStates[2]);
-    localStorage.setItem('stadium', checkboxStates[3]);
-    localStorage.setItem('eatary', checkboxStates[4]);
-  }, [checkboxStates]);
+  const tickBuilding = () => {
+    setBuildingChecked((prev) => !prev);
+    localStorage.setItem('building', buildingChecked);
+    window.dispatchEvent(new Event('building'));
+  }
 
-  const checkboxTexts = ['Parking place', 'School building', 'Dormitory', 'Stadium', 'Eatary'];
+  const tickDorm = () => {
+    setDormChecked((prev) => !prev);
+    localStorage.setItem('dormitory', dormChecked);
+    window.dispatchEvent(new Event('dormitory'));
+  }
 
-  const handleCheckboxChange = (index) => (event) => {
-    // Update the checkbox state based on the index
-    setCheckboxStates(prevStates => {
-      const newStates = [...prevStates];
-      newStates[index] = event.target.checked;
-      return newStates;
-    });
-  };
+  const tickStadium = () => {
+    setStadiumChecked((prev) => !prev);
+    localStorage.setItem('stadium', stadiumChecked);
+    window.dispatchEvent(new Event('stadium'));
+  }
+
+  const tickEat = () => {
+    setEatChecked((prev) => !prev);
+    localStorage.setItem('eatary', eatChecked);
+    window.dispatchEvent(new Event('eatary'));
+  }
   
   return (
     <Flex align="center" position="relative">
@@ -65,23 +67,62 @@ const MenuIcon = ({ onCheckboxChange }) => {
       >
         {/* Content of the layer */}
 
-        {checkboxStates.map((checked, index) => (
-          <Flex align="center" key={`checkbox-${index}`} mb={2}>
-            <Checkbox
-              colorScheme="blue"
-              checked={checked}
-              onChange={handleCheckboxChange(index)}
-            />
-            <Text ml={2} color="teal.500">
-              {checkboxTexts[index]}
-            </Text>
-          </Flex>
-        ))}
+        <Flex align={"center"} mb={2}>
+          <Checkbox 
+          colorScheme="blue"
+          checked={parkingChecked}
+          onChange={tickParking} 
+          />
+          <Text ml={2} color={"teal.500"}>
+            Parking
+          </Text>
+        </Flex>
 
+        <Flex align={"center"} mb={2}>
+          <Checkbox 
+          colorScheme="blue"
+          checked={buildingChecked}
+          onChange={tickBuilding} 
+          />
+          <Text ml={2} color={"teal.500"}>
+            School building
+          </Text>
+        </Flex>
+
+        <Flex align={"center"} mb={2}>
+          <Checkbox 
+          colorScheme="blue"
+          checked={dormChecked}
+          onChange={tickDorm} 
+          />
+          <Text ml={2} color={"teal.500"}>
+            Dormitory
+          </Text>
+        </Flex>
+
+        <Flex align={"center"} mb={2}>
+          <Checkbox 
+          colorScheme="blue"
+          checked={stadiumChecked}
+          onChange={tickStadium} 
+          />
+          <Text ml={2} color={"teal.500"}>
+            Stadium
+          </Text>
+        </Flex>
+
+        <Flex align={"center"} mb={2}>
+          <Checkbox 
+          colorScheme="blue"
+          checked={eatChecked}
+          onChange={tickEat} 
+          />
+          <Text ml={2} color={"teal.500"}>
+          Eatary
+          </Text>
+        </Flex>
         
-        {/* Add more checkboxes or content here */}
       </Box>
-      {/* Pass the checkboxesState object to another component */}
     </Flex>
   );
 };
