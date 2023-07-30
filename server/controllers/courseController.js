@@ -15,9 +15,9 @@ export const getRoomAndBuildingbyCourseId = async (req, res) => {
 
         for (let i = 0; i < rooms.length; i++) {
             let tmp = {
-                "beginTime" : allSchedules[i].beginTime,
-                "endTime" : allSchedules[i].endTime,
-                "day" : allSchedules[i].date,
+                "beginTime" : allSchedules[i].beginTime + "h",
+                "endTime" : allSchedules[i].endTime + "h",
+                "day" : allSchedules[i].day,
                 "courseCode": course.courseCode,
                 "courseName": course.courseName,
                 "teacher": course.teacherName,
@@ -32,5 +32,22 @@ export const getRoomAndBuildingbyCourseId = async (req, res) => {
 
     } catch (err) {
         res.status(500).json(err.message);
+    }
+}
+export const addNewCourse = async (req,res) => {
+    console.log("hehee")
+    try{
+
+        const newCourse = await Course.create({
+            courseCode:req.body.courseCode,
+            courseName:req.body.courseName,
+            teacherName:req.body.teacherName,
+        })
+        await newCourse.save()
+        res.status(200).json(newCourse)
+    }
+    catch(err){
+        res.status(500).json(err.message)
+
     }
 }
