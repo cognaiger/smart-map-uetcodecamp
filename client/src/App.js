@@ -22,7 +22,7 @@ function App() {
 
   const ProtectedRoute = ({ children }) => {
     const user = localStorage.getItem("user");
-    if (!user) {
+    if (!user || user === 'null') {
       return <Navigate to={"/login"} />
     }
 

@@ -25,11 +25,54 @@ import {
   } from '@chakra-ui/react';
 import { TimeIcon } from '@chakra-ui/icons';
 import { Button } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import axios from "axios";
 
-const RoomModal = ({ isOpen, setIsOpen, title, descrip }) => {
+const RoomModal = ({ isOpen, setIsOpen, title, descrip, roomId }) => {
+
+    const [courses, setCourses] = useState([]);
+
+    useEffect(() => {
+        let ignore = false;
+
+        async function fetchData() {
+            try {
+                const res = await axios.get("http://localhost:8000/getSchedule", {
+                    params: {
+                        roomId: roomId
+                    }
+                })
+                if (!ignore) {
+                    setCourses(res.data);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        fetchData();
+
+        return () => {
+            ignore = true;
+        };
+    }, [roomId]);
 
     const onClose = () => {
         setIsOpen(false);
+    }
+
+    const convertDate = (start, end, day) => {
+        let res = start + ":00 - " + end + ":00";
+        let dayText;
+        if (day === 8) {
+            dayText = "Chu nhat";
+        } else {
+            dayText = "Thu " + day;
+        }
+        if (day) {
+            res += " (" + dayText + ")";
+        }
+        return res;
     }
 
     return (
@@ -60,53 +103,27 @@ const RoomModal = ({ isOpen, setIsOpen, title, descrip }) => {
 
                                     <CardBody>
                                         <Stack divider={<StackDivider />} spacing={4}>
-                                            <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'}>
-                                                <div>
-                                                    <Heading size={'xs'} textTransform={'uppercase'}>
-                                                        INT2101 2
-                                                    </Heading>
-                                                    <Text pt='2' fontSize='sm'>
-                                                        Ths Vu Ba Duy
-                                                    </Text>
-                                                </div>
+                                            {courses.map(course => (
+                                                <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'}>
+                                                    <div>
+                                                        <Heading size={'xs'} textTransform={'uppercase'}>
+                                                            {course.courseCode}
+                                                        </Heading>
+                                                        <Text pt='2' fontSize='sm'>
+                                                            {course.name}
+                                                        </Text>
+                                                        <Text pt='2' fontSize='sm'>
+                                                            {course.teacherName}
+                                                        </Text>
+                                                    </div>
 
-                                                <Tag size={'sm'} variant={'subtle'} colorScheme='cyan'>
-                                                    <TagLeftIcon boxSize={8} as={TimeIcon} />
-                                                    <TagLabel>13:00 - 15:00 (T3)</TagLabel>
-                                                </Tag>
-                                            </Box>
+                                                    <Tag size={'sm'} variant={'subtle'} colorScheme='cyan'>
+                                                        <TagLeftIcon boxSize={8} as={TimeIcon} />
+                                                        <TagLabel>{convertDate(course.beginTime, course.endTime, course.day)}</TagLabel>
+                                                    </Tag>
+                                                </Box>
+                                            ))}
 
-                                            <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'}>
-                                                <div>
-                                                    <Heading size={'xs'} textTransform={'uppercase'}>
-                                                        INT2102 2
-                                                    </Heading>
-                                                    <Text pt='2' fontSize='sm'>
-                                                        Ths Vu Ba Duy
-                                                    </Text>
-                                                </div>
-
-                                                <Tag size={'sm'} variant={'subtle'} colorScheme='cyan'>
-                                                    <TagLeftIcon boxSize={8} as={TimeIcon} />
-                                                    <TagLabel>13:00 - 15:00 (T2)</TagLabel>
-                                                </Tag>
-                                            </Box>
-
-                                            <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} alignItems={'center'}>
-                                                <div>
-                                                    <Heading size={'xs'} textTransform={'uppercase'}>
-                                                        INT2105 2
-                                                    </Heading>
-                                                    <Text pt='2' fontSize='sm'>
-                                                        Ths Vu Ba Duy
-                                                    </Text>
-                                                </div>
-
-                                                <Tag size={'sm'} variant={'subtle'} colorScheme='cyan'>
-                                                    <TagLeftIcon boxSize={8} as={TimeIcon} />
-                                                    <TagLabel>13:00 - 15:00 (T6)</TagLabel>
-                                                </Tag>
-                                            </Box>
                                         </Stack>
                                     </CardBody>
                                 </Card>

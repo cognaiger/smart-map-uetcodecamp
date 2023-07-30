@@ -8,9 +8,11 @@ const G2F1 = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [roomTitle, setRoomTitle] = useState("");
     const [descrip, setDescrip] = useState("");
+    const [roomId, setRoomId] = useState("");
 
     const roomInfo = {
         "103": {
+            "id": "64c4cbdbe78cbf7aeec89de1",
             "title": "103 - Phong nhiem vu chien luoc so 2",
             "description": "this is description"
         },
@@ -21,6 +23,7 @@ const G2F1 = () => {
         },
 
         "101": {
+            "id": "64c4cc2fe78cbf7aeec89de5",
             "title": "101",
             "description": "this is description"
         },
@@ -41,6 +44,7 @@ const G2F1 = () => {
         },
 
         "107": {
+            "id": "64c4cb08d7777f3b912c4859",
             "title": "107",
             "description": "this is description"
         },
@@ -52,6 +56,7 @@ const G2F1 = () => {
         setIsModalOpen(true);
         setRoomTitle(roomInfo[room].title);
         setDescrip(roomInfo[room].description);
+        setRoomId(roomInfo[room].id);
     }
 
     return (
@@ -90,7 +95,7 @@ const G2F1 = () => {
                 <Door x={890} y={760} width={150} />
                 <Stair x={890} y={270} width={150} height={150} />
             </svg>
-            {isModalOpen && <RoomModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} title={roomTitle} descrip={descrip} />}
+            {isModalOpen && <RoomModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} title={roomTitle} descrip={descrip} roomId={roomId} />}
         </div>
     )
 }

@@ -21,7 +21,7 @@ export const AuthContextProvider = ({ children }) => {
             })
           
             if (response.data === "not exist") {
-                alert("User has not registed")
+                alert("User has not registed");
             } else if (response.data === "the password is incorrect") {
                 alert("Password is incorrect");
             } else {
@@ -31,6 +31,7 @@ export const AuthContextProvider = ({ children }) => {
                 });
                 localStorage.setItem("loggedIn",true);
                 navigate("/");
+
             } 
         } catch (e) {
             console.log(e);
@@ -39,6 +40,7 @@ export const AuthContextProvider = ({ children }) => {
     
     useEffect(() => {
         localStorage.setItem("user", JSON.stringify(currentUser));
+        navigate("/");
     }, [currentUser]);
 
     return (

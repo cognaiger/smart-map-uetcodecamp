@@ -37,9 +37,11 @@ export const getRoomSchedule = async (req, res) => {
           let obj = allSchedules[i];
           let course = courses[i][0];
             let tmp = {
+                "id": course.id,
+                "courseCode": course.courseCode,
                 "name": course.courseName,
                 "teacherName": course.teacherName,
-                "date": obj.date,
+                "day": obj.day,
                 "beginTime": obj.beginTime,
                 "endTime": obj.endTime
             }
